@@ -55,6 +55,18 @@ docker build -t tedisfree:latest -f build/dockerfile
 docker images
 ```
 
+## Docker 이미지를 파일로 저장
+
+```sh
+docker image save tedisfree:latest -o tedisfree.tar
+```
+
+## 파일에서 이미지 불러오기 
+
+```sh
+docker load -i tedisfree.tar
+```
+
 ## 컨네이터 생성
 
 ```sh
