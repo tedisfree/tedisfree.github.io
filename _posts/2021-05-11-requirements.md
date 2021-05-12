@@ -45,7 +45,8 @@ If <src> is a directory, the entire contents of the directory are copied, includ
 
 ```sh
 # name:tag의 :tag는 옵션
-docker build -t <name:tag> -f <dockerfile-path>
+# docker build -t <name:tag> -f <dockerfile-path>
+docker build -t tedisfree:latest -f build/dockerfile
 ```
 
 빌드한 이미지가 생성되었어 있는지 확인
@@ -53,4 +54,12 @@ docker build -t <name:tag> -f <dockerfile-path>
 ```sh
 docker images
 ```
+
+## 컨네이터 생성
+
+```sh
+docker run -dit --name tedisfree -p 5000:5000 tedisfree
+```
+
+
 
