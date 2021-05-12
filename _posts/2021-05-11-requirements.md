@@ -1,3 +1,10 @@
+---
+title: "리눅스 Restart 서비스"
+date: 2021-04-15 08:26:28 -0400
+categories: linux daemon  
+---
+
+```
 aniso8601==9.0.1
 attrs==20.3.0
 certifi==2020.12.5
@@ -30,3 +37,4 @@ simplejson==3.17.2
 six==1.15.0
 urllib3==1.26.4
 Werkzeug==1.0.1
+```
