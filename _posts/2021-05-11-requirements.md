@@ -1,7 +1,7 @@
 ---
-title: "리눅스 Restart 서비스"
-date: 2021-04-15 08:26:28 -0400
-categories: linux daemon  
+title: "임시 Requirements.txt"
+date: 2021-05-11 08:26:28 -0400
+categories: python
 ---
 
 ```
