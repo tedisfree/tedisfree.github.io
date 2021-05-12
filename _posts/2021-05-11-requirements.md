@@ -15,8 +15,8 @@ FROM python:3.9.4
 ENV LANG C.UTF-8
 
 WORKDIR /usr/local
-COPY requirements.txt /usr/local
-RUN pip --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt
+COPY '../requirements.txt' /usr/local
+RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt
 
 EXPOSE 5000
 ```
