@@ -4,37 +4,53 @@ date: 2021-05-11 08:26:28 -0400
 categories: python
 ---
 
+Python으로 작업한 프로젝트를 Docker 이미지로 배포할 때  
+requirements에 추가된 패키지를 포함해서 이미지로 생성할 수 있는 방법을 검토한다.
+
+## Dockerfile 작성
+
+```dockerfile
+FROM python:3.9.4
+
+ENV LANG C.UTF-8
+
+WORKDIR /usr/local
+COPY requirements.txt /usr/local
+RUN pip --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt
+
+EXPOSE 5000
 ```
-aniso8601==9.0.1
-attrs==20.3.0
-certifi==2020.12.5
-chardet==4.0.0
-click==7.1.2
-cycler==0.10.0
-et-xmlfile==1.0.1
-Flask==1.1.2
-flask-restx==0.3.0
-idna==2.10
-itsdangerous==1.1.0
-Jinja2==2.11.3
-jsonschema==3.2.0
-kiwisolver==1.3.1
-MarkupSafe==1.1.1
-matplotlib==3.4.1
-numpy==1.20.2
-openpyxl==3.0.7
-pandas==1.2.3
-pdfkit==0.6.1
-Pillow==8.2.0
-psycopg2==2.8.6
-pyparsing==2.4.7
-PyPDF2==1.26.0
-pyrsistent==0.17.3
-python-dateutil==2.8.1
-pytz==2021.1
-requests==2.25.1
-simplejson==3.17.2
-six==1.15.0
-urllib3==1.26.4
-Werkzeug==1.0.1
+이미지 생성  
+
+> 하기와 같이 카피할 파일이 상위 디렉토리에 있는 경우 Dockerfile를 상위 디렉토리에서 실행할 수 있도록 해야 한다.
+
+```dockerfile
+COPY ../requirements.txt /usr/local
 ```
+
+https://docs.docker.com/engine/reference/builder/ 의 아래의 코멘트 참조
+```
+ADD obeys the following rules:
+
+The <src> path must be inside the context of the build; you cannot ADD ../something /something, because the first step of a docker build is to send the context directory (and subdirectories) to the docker daemon.
+
+If <src> is a URL and <dest> does not end with a trailing slash, then a file is downloaded from the URL and copied to <dest>.
+
+If <src> is a URL and <dest> does end with a trailing slash, then the filename is inferred from the URL and the file is downloaded to <dest>/<filename>. For instance, ADD http://example.com/foobar / would create the file /foobar. The URL must have a nontrivial path so that an appropriate filename can be discovered in this case (http://example.com will not work).
+
+If <src> is a directory, the entire contents of the directory are copied, including filesystem metadata.
+```
+
+## Docker 빌드
+
+```sh
+# name:tag의 :tag는 옵션
+docker build -t <name:tag> -f <dockerfile-path>
+```
+
+빌드한 이미지가 생성되었어 있는지 확인
+
+```sh
+docker images
+```
+
