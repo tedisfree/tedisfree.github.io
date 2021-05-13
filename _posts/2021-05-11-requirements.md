@@ -1,5 +1,5 @@
 ---
-title: "임시 Requirements.txt"
+title: "Python 프로젝트 Docker 이미지로 배포"
 date: 2021-05-11 08:26:28 -0400
 categories: python
 ---
@@ -13,6 +13,8 @@ requirements에 추가된 패키지를 포함해서 이미지로 생성할 수 �
 FROM python:3.9.4
 
 ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+ENV LANGUAGE C.UTF-8
 
 WORKDIR /usr/local
 COPY '../requirements.txt' /usr/local
