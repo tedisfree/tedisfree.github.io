@@ -12,7 +12,11 @@ docker run -it \
 전체 이미지 삭제 
 
 ```sh
+# Linux
 docker rmi $(docker images -q)
+
+# Windows
+for /F "tokens=*" %a in ('docker images -q') do docker rmi %a
 ```
 
 전체 컨테이너 삭제
