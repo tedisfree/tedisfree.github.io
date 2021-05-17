@@ -75,5 +75,20 @@ docker load -i tedisfree.tar
 docker run -dit --name tedisfree -p 5000:5000 tedisfree
 ```
 
+# 기타
+
+## Docker 이미지 생성 시, 리눅스 패키지 초기 설치
+
+### 베이스 이미지가 Redhat 계열인 경우 
+```dockerfile
+RUN echo "sslverify=false" >> /etc/yum.conf 
+RUN yum install <패키지명> 
+```
+
+### 베이스 이미지가 Fedora 계열인 경우
+```dockerfile
+RUN apt-get update
+RUN apt-get -qq -y install <패키지명>
+```
 
 
