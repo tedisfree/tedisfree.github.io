@@ -24,3 +24,27 @@ for /F "tokens=*" %a in ('docker images -q') do docker rmi %a
 ```sh
 docker rm $(docker ps -a -q)
 ```
+
+# Docker Container 생성시 환경 변수를 추가할 수 있는 방법은 없을까
+
+같은 목적의 container를 여러개 생성할 때, 구분을 위해 환경 변수로 인덱싱할 수 없는지 확인해 보자.
+
+> `-e` 옵션을 사용
+
+```
+docker run -d --name test-cont -e "ENV=value" test-img
+```
+
+
+# Dockerfile Argument 사용
+
+```dockerfile
+ARG my_name
+
+# 환경 변수로 추가하기 위해서는 ENV 사용
+ENV MY_NAME=$my_name
+```
+
+```sh
+docker build ... --build-arg my_name=Ted .
+```
