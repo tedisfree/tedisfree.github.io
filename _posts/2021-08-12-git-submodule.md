@@ -27,4 +27,28 @@ git submodule update
 git clone --recurse-submodules https://ted.com/project
 ```
 
+# Submodule에 Push
+
+메인 프로젝트에서 서브모듈의 내용을 수정한 경우, 이를 서브모듈 repository에 push하고 싶을 때는 다음과 같이 진행하면 된다.
+서브모듈은 메인 프로젝트와 별개로 독립된 repository로 처리되므로, 서브모듈이 있는 위치에서 일반적인 push 작업을 진행하면 된다.
+
+```git
+cd submodule
+git add . 
+git commit -m "submodule changes"
+git push 
+```
+
+이제 메인 repository에도 submodule의 변경 사항을 커밋해 줘야한다.
+
+```git
+cd main_proj_git_root
+git add submodule
+git commit -m "updated some..."
+git push
+```
+
+
+
+
 
