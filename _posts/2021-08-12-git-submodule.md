@@ -48,6 +48,11 @@ git commit -m "updated some..."
 git push
 ```
 
+# Remote의 수정 반영
+
+```git
+git submodule update --remote sub-project
+```
 
 
 
